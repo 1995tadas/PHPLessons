@@ -1,9 +1,10 @@
 <?php
 namespace App\Controller;
+use Core\Controller;
 
-class HomeController
+class HomeController extends Controller
 {
-    public function __construct(){
-        echo 'Content from controller';
+    public function index(){
+        $this->view->render('pageParts/home');
     }
 }

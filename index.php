@@ -2,16 +2,18 @@
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+include 'includes/functions.php';
+session_start();
 require __DIR__ . '/vendor/autoload.php';
 
 use \App\Helper\Helper;
 
-echo '<pre>';
 if(isset($_SERVER['PATH_INFO'])){
     $patch = $_SERVER ['PATH_INFO'];
 } else {
     $patch = "/";
 }
+
 $patch = explode('/',$patch);
 $helper = new Helper();
 if(isset($patch[1]) && !empty($patch[1])){
@@ -27,7 +29,12 @@ if(isset($patch[1]) && !empty($patch[1])){
         $object = new $controller;
 
         if(method_exists($object,$method)){
-            $object->{$method}();
+            if(isset($patch[3]) && !empty($patch[3])){
+                $object->{$method}($patch[3]);
+            } else {
+                $object->{$method}();
+            }
+
         } else {
             $error = new \App\Controller\ErrorController();
             $error->MethodNotAllowed();
@@ -38,5 +45,7 @@ if(isset($patch[1]) && !empty($patch[1])){
     }
 } else {
     $object = new \App\Controller\HomeController();
+    $object -> index();
 }
+
 
