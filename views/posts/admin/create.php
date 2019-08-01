@@ -1,4 +1,4 @@
-<div class="form-wrapper">
+<div class="post-wrapper">
     <h1>Create New Post</h1>
     <form method="post" action="http://141.136.44.119/mvc/index.php/post/store">
         <input type="text" placeholder="Title" name="title" required>

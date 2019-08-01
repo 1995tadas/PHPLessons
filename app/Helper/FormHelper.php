@@ -5,9 +5,9 @@ class FormHelper
 {
     private $form;
 
-    public function __construct($action, $method, $class = '')
+    public function __construct($action, $method, $class = '',$param='')
     {
-        $this->form = '<form class="' . $class . '" action="' . $action . '" method="' . $method . '">';
+        $this->form = '<form class="' . $class . '" action="' . $action . '" method="' . $method .'" '.$param.'>';
     }
 
     public function addInput($attributes, $label = '', $wrapper = '')
@@ -35,6 +35,23 @@ class FormHelper
         }
         if ($wrapper != '') {
             $form = $this->wrapElement($wrapper,$form);
+        }
+        $this->form .= $form;
+        return $this;
+    }
+    public function addSelect($options, $name, $wrapper = '', $label = '')
+    {
+        $form = '';
+        $form .= '<select name="' . $name . '">';
+        foreach ($options as $value => $option) {
+            $form .= '<option value="' . $value . '"';
+            $form .= ' >';
+            $form .= ucfirst($option);
+            $form .= '</option>';
+        }
+        $form .= '</select>';
+        if ($wrapper != '') {
+            $html = '<div class="' . $wrapper . '">' . $form . '</div>';
         }
         $this->form .= $form;
         return $this;

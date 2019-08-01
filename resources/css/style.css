@@ -1,4 +1,4 @@
-body,p {
+body, p {
     background-color: #FFD600;
 }
 h1 {
@@ -65,9 +65,12 @@ footer {
     justify-content: space-evenly;
 }
 
-.posts-wrapper img {
+.posts-wrapper img , td img{
     height: 100px;
     width: 150px;
+}
+.admin-link {
+    color:black;
 }
 .posts-column {
     text-align: center;
@@ -105,15 +108,46 @@ input[type=submit]{
     border: 1px solid #FFD600;
     color: #FFD600;
 }
+input[type=checkbox] {
+    width:initial;
+}
+.cat{
+    display: inline;
+    margin-left: 20px;
+}
+.cat:first-of-type {
+    margin-left: 0;
+}
 textarea {
     height: 200px;
 }
 form {
     margin: 0;
 }
-.form-wrapper {
+.form-wrapper, .login-wrapper, .registration-wrapper, .search-form, .post-wrapper, .edit-wrapper {
     width: 50%;
     margin: 0 auto;
     text-align: center;
     padding: 20px 0;
+}
+.red {
+    border: 2px solid red;
+}
+.green {
+    border: 2px solid green;
+}
+.warning {
+    color:red;
+    font-size: 24pt;
+    margin: 0;
+    border: 2px solid red;
+}
+.success,.msg {
+    color:green;
+    border: 2px solid green;
+    font-size: 24pt;
+    margin: 0;
+}
+.msg {
+    display: none;
 }

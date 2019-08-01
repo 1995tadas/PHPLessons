@@ -18,7 +18,7 @@ class AccountController extends Controller
 
     public function registration()
     {
-        $form = new FormHelper(url('account/create'),'post', 'form-wrapper');
+        $form = new FormHelper(url('account/create'),'post', 'registration-wrapper');
         $form->tag('h1','Sign up')
             ->addInput([
             'name' => 'name',
@@ -38,20 +38,24 @@ class AccountController extends Controller
                 'placeholder' => 'Email',
                 'type' => 'email',
                 'required' =>'required',
+                'class'=>'email'
 
             ])->addInput([
                 'name' => 'password',
                 'placeholder' => 'Password',
                 'type' => 'password',
                 'required' =>'required',
+                'class' =>'password',
 
             ])->addInput([
                 'name' => 'password2',
                 'placeholder' => 'Repeat your password',
                 'type' => 'password',
                 'required' =>'required',
+                'class'=>'password2',
 
-            ])->addInput([
+            ])->tag('p','','msg-registration')
+            ->addInput([
                 'name' => 'submit',
                 'value' => 'Submit',
                 'type' => 'submit',
@@ -65,7 +69,7 @@ class AccountController extends Controller
 
     public function login()
     {
-        $form = new FormHelper(url('account/auth'),'post', 'form-wrapper');
+        $form = new FormHelper(url('account/auth'),'post', 'login-wrapper');
         $form->tag('h1','Log in')
             ->addInput([
                 'name' => 'email',
@@ -88,11 +92,7 @@ class AccountController extends Controller
         //laudinsim logino forma
     }
 
-    public function redirect($url, $statusCode = 303)
-    {
-        header('Location: ' . $url, true, $statusCode);
-        die();
-    }
+
 
     public function create()
     {
@@ -106,7 +106,7 @@ class AccountController extends Controller
             $accountModelObject->setPassword($pass);
             $accountModelObject->setRoleId(1);
             $accountModelObject->save();
-            $this->redirect(url('account/login/'));
+            redirect(url('account/login/'));
         }
         }
     }
@@ -119,7 +119,7 @@ class AccountController extends Controller
         $user = \App\Model\UsersModel::verification($email, $pass);
         if (!empty($user)) {
             $_SESSION{'user'}=$user;
-            $this->redirect(url('post/'));
+            redirect(url('post/'));
             //prisiloginus
             //redirectas i admin
         } else {
@@ -128,8 +128,20 @@ class AccountController extends Controller
             //redirectas i logina
         }
     }
+
+    public function emailverification (){
+        $response = [];
+
+        if(!InputHelper::uniqEmail($_POST['email_ajax'])){
+            $response['code'] = 200;
+        } else {
+            $response['code'] = 500;
+        }
+
+        echo json_encode($response);
+}
     public function logout(){
         session_destroy();
-        $this->redirect(url('post/'));
+        redirect(url('post/'));
     }
 }

@@ -45,6 +45,7 @@ class InputHelper
             return false;
         }
         return true;
+
     }
 
     public static function checkEmail($email)
@@ -54,5 +55,11 @@ class InputHelper
             return true;
         }
         return false;
+    }
+
+    public function makeSlug($title){
+        $slug = strtolower($title);
+        $slug = str_replace(' ', '-', $slug);
+        return $slug;
     }
 }

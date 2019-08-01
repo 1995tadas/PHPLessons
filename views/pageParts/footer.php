@@ -1,6 +1,6 @@
 
 </head>
-</body>
-<footer>Tadas Sapitavičius &copy Visos teisės saugomos</footer>
-</body>
+    </body>
+        <footer>Tadas Sapitavičius &copy All right reserved</footer>
+    </body>
 </html>
