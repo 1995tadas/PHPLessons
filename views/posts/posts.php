@@ -5,7 +5,7 @@
         <?php foreach($this->posts as $post): ?>
             <div class="posts-column">
                 <a href="<?php echo url("post/show/").$post->id ?>">
-                    <img src="<?php echo uploadsUrl($post->image)  ?>">
+                    <img src="<?php echo uploadsUrl(getGeneratedImage($post->image,600,300))  ?>">
                     <h3><?php echo $post->title ?></h3>
                     <?php if($this->user):?>
                         <a href="<?php echo url("post/edit/").$post->id ?>">Edit post</a>

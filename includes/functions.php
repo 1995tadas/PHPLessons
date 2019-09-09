@@ -31,3 +31,8 @@ function debug($data) {
     die();
 }
 
+function getGeneratedImage($image,$width,$height)
+{
+    return App\Helper\ImageHelper::generate($image,$width,$height);
+
+}

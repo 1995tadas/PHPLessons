@@ -12,7 +12,6 @@ class FormHelper
 
     public function addInput($attributes, $label = '', $wrapper = '')
     {
-        //implementuoti Label
         $form = '';
 
         $form .= '<input ';

@@ -1,6 +1,6 @@
 $(document).ready(function()
 {
-    $('.edit-wrapper').submit(function(e){
+    $('.from-wrapper').submit(function(e){
         e.preventDefault();
         var url = $('.edit-wrapper').attr('action');
         $.ajax({
